@@ -14,11 +14,9 @@ class LoginScreen : BaseFragment(R.layout.screen_login) {
 
     override fun onViewCreated(view: View) {
 
-
         binding.root.setOnClickListener {
             Toast.makeText(context, "aa", Toast.LENGTH_SHORT).show()
         }
-
 
     }
 
