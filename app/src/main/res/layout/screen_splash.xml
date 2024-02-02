@@ -6,11 +6,20 @@
     tools:context=".ui.splash.SplashScreen">
 
 
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:src="@drawable/splash" />
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Splash"
-        android:textSize="50sp" />
+        android:layout_height="wrap_content"
+        android:text="Movie"
+        android:textColor="@color/white"
+        android:textSize="65sp"
+        android:textStyle="bold" />
 
 </FrameLayout>

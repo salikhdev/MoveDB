@@ -62,4 +62,9 @@ dependencies {
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
+    //Image Dependency
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
+
+    // LoadImage - Glide
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
 }
