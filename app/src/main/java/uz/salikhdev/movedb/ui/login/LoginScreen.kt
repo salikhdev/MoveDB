@@ -19,7 +19,6 @@ class LoginScreen : BaseFragment(R.layout.screen_login) {
             Toast.makeText(context, "aa", Toast.LENGTH_SHORT).show()
         }
 
-
     }
 
 
