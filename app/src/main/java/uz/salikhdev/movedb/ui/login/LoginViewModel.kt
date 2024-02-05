@@ -64,6 +64,7 @@ class LoginViewModel @Inject constructor(
                 is ResultWrapper.Success -> {
                     result.response?.let {
                         sessionLD.value = it
+                        cache.isFirst(false)
                     }
                 }
             }

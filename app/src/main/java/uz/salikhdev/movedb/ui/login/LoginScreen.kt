@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.salikhdev.movedb.R
 import uz.salikhdev.movedb.core.common.BaseFragment
@@ -70,7 +71,7 @@ class LoginScreen : BaseFragment(R.layout.screen_login) {
             viewModel.saveSessionIdToStorage(it.sessionId)
             binding.loginBtn.isVisible = true
             binding.progressBar.isGone = true
-            Toast.makeText(context, "Session Saqlandi", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(LoginScreenDirections.actionLoginScreenToMainScreen())
         }
 
         viewModel.errorLD.observe(viewLifecycleOwner) {

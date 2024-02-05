@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baseColorHint"
+    android:orientation="vertical"
+    tools:context=".ui.main.MainScreen">
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:backgroundColor="@color/baseColor"
+        app:cornerRadius="5dp"
+        app:corners="top_left|top_right"
+        app:iconSize="30dp"
+        app:iconTint="#9BFFFFFF"
+        app:iconTintActive="#FFFFFF"
+        app:indicatorColor="#5850586F"
+        app:indicatorRadius="15dp"
+        app:menu="@menu/bottom_menu"
+        app:textColor="@color/white" />
+
+</LinearLayout>

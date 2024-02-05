@@ -3,6 +3,7 @@
     <style name="Base.Theme.MoveDB" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/baseColor</item>
     </style>
 
     <style name="Theme.MoveDB" parent="Base.Theme.MoveDB" />

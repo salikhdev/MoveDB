@@ -79,4 +79,8 @@ dependencies {
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:2.50"
     kapt "com.google.dagger:hilt-compiler:2.48"
+
+    // SmoothBar
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
+
 }

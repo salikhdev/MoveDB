@@ -1,4 +1,4 @@
-package uz.salikhdev.movedb.ui.profil
+package uz.salikhdev.movedb.ui.main.profile
 
 import android.view.View
 import androidx.navigation.fragment.findNavController
