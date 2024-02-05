@@ -1,8 +1,10 @@
-package uz.salikhdev.movedb.core
+package uz.salikhdev.movedb.core.repository
 
 import kotlinx.coroutines.Dispatchers
 import uz.salikhdev.movedb.core.model.login.LoginRequest
-import uz.salikhdev.movedb.core.model.token.TokenResonse
+import uz.salikhdev.movedb.core.model.login.SessionResponse
+import uz.salikhdev.movedb.core.model.login.TokenRequest
+import uz.salikhdev.movedb.core.model.login.TokenResonse
 import uz.salikhdev.movedb.core.network.AuthService
 import uz.salikhdev.movedb.core.util.API_KEY
 import uz.salikhdev.movedb.core.util.ResultWrapper
@@ -15,6 +17,12 @@ class AuthRepository @Inject constructor(private val service: AuthService) {
     suspend fun getToken(): ResultWrapper<TokenResonse?, Any?> {
         return parseResponse(Dispatchers.IO) {
             service.getNewToken(API_KEY)
+        }
+    }
+
+    suspend fun getNewSession(body: TokenRequest): ResultWrapper<SessionResponse?, Any?> {
+        return parseResponse(Dispatchers.IO) {
+            service.createNewSession(API_KEY, body)
         }
     }
 

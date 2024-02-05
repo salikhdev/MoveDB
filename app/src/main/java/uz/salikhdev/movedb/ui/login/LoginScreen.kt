@@ -1,6 +1,5 @@
 package uz.salikhdev.movedb.ui.login
 
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isGone
@@ -10,6 +9,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.salikhdev.movedb.R
 import uz.salikhdev.movedb.core.common.BaseFragment
 import uz.salikhdev.movedb.core.model.login.LoginRequest
+import uz.salikhdev.movedb.core.model.login.TokenRequest
 import uz.salikhdev.movedb.databinding.ScreenLoginBinding
 
 
@@ -53,7 +53,6 @@ class LoginScreen : BaseFragment(R.layout.screen_login) {
 
         }
 
-
     }
 
     private fun observer() {
@@ -63,18 +62,29 @@ class LoginScreen : BaseFragment(R.layout.screen_login) {
         }
 
         viewModel.loginLD.observe(viewLifecycleOwner) {
+            val body = TokenRequest(it.requestToken)
+            viewModel.getSession(body)
+        }
 
-            viewModel.saveTokenToStorage(it.requestToken)
-            Toast.makeText(context, "Login qilindi", Toast.LENGTH_SHORT).show()
-
+        viewModel.sessionLD.observe(viewLifecycleOwner) {
+            viewModel.saveSessionIdToStorage(it.sessionId)
+            binding.loginBtn.isVisible = true
+            binding.progressBar.isGone = true
+            Toast.makeText(context, "Session Saqlandi", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.errorLD.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-            Log.d("TAGaaa", "observer:$it ")
+
+            if (it == "401") {
+                Toast.makeText(context, "Username or Password Invalid", Toast.LENGTH_SHORT).show()
+            } else if (it == "NETWORK_ERROR") {
+                Toast.makeText(context, "Internet Yo'q", Toast.LENGTH_SHORT).show()
+            }
+
             binding.loginBtn.isVisible = true
             binding.progressBar.isGone = true
         }
+
 
     }
 

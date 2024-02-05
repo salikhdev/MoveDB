@@ -1,4 +1,4 @@
-package uz.salikhdev.movedb.core.model.token
+package uz.salikhdev.movedb.core.model.login
 
 
 import com.google.gson.annotations.SerializedName

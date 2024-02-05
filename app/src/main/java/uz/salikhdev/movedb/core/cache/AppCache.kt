@@ -5,14 +5,23 @@ import android.content.Context
 class AppCache(context: Context) {
 
     private val sharedPreferences = context.getSharedPreferences("app_cache", Context.MODE_PRIVATE)
-    private val TOKEN_KEY = "TOKEN_KEY"
+    private val SESSION_KEY = "SESSIOMN_KEY"
+    private val IS_FIRST = "IS_FIRS"
 
-    fun saveToken(token: String) {
-        sharedPreferences.edit().putString(TOKEN_KEY, token).apply()
+    fun saveSession(token: String) {
+        sharedPreferences.edit().putString(SESSION_KEY, token).apply()
     }
 
-    fun getToken(): String {
-        return sharedPreferences.getString(TOKEN_KEY, "")!!
+    fun getSessionId(): String {
+        return sharedPreferences.getString(SESSION_KEY, "")!!
+    }
+
+    fun isFirst(isFirst: Boolean) {
+        sharedPreferences.edit().putBoolean(IS_FIRST, isFirst).apply()
+    }
+
+    fun getIsFirst(): Boolean {
+        return sharedPreferences.getBoolean(IS_FIRST, true)
     }
 
 }
