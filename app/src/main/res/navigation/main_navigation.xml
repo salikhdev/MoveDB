@@ -38,5 +38,30 @@
         android:id="@+id/mainScreen"
         android:name="uz.salikhdev.movedb.ui.main.MainScreen"
         android:label="screen_main"
-        tools:layout="@layout/screen_main" />
+        tools:layout="@layout/screen_main">
+        <action
+            android:id="@+id/action_mainScreen_to_homePage"
+            app:destination="@id/homePage" />
+        <action
+            android:id="@+id/action_mainScreen_to_savePage"
+            app:destination="@id/savePage" />
+        <action
+            android:id="@+id/action_mainScreen_to_profilePage"
+            app:destination="@id/profilePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/homePage"
+        android:name="uz.salikhdev.movedb.ui.main.home.HomePage"
+        android:label="page_home"
+        tools:layout="@layout/page_home" />
+    <fragment
+        android:id="@+id/profilePage"
+        android:name="uz.salikhdev.movedb.ui.main.profile.ProfilePage"
+        android:label="page_profil"
+        tools:layout="@layout/page_profil" />
+    <fragment
+        android:id="@+id/savePage"
+        android:name="uz.salikhdev.movedb.ui.main.save.SavePage"
+        android:label="page_save"
+        tools:layout="@layout/page_save" />
 </navigation>
