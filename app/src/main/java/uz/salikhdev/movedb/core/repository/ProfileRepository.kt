@@ -1,6 +1,5 @@
 package uz.salikhdev.movedb.core.repository
 
-import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import uz.salikhdev.movedb.core.model.profile.ProfileDetailResponse
 import uz.salikhdev.movedb.core.network.ProfileService
@@ -13,8 +12,6 @@ class ProfileRepository @Inject constructor(private val service: ProfileService)
 
     suspend fun getProfileDetails(sessionId: String): ResultWrapper<ProfileDetailResponse?, Any?> {
         return parseResponse(Dispatchers.IO) {
-            Log.d("TAGaaaa", "getProfileDetails: ")
-
             service.loadAccountDetail(API_KEY, sessionId)
         }
     }

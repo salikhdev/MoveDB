@@ -1,5 +1,7 @@
 package uz.salikhdev.movedb.ui.login
 
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isGone
@@ -36,12 +38,12 @@ class LoginScreen : BaseFragment(R.layout.screen_login) {
             val password = binding.password.text.toString()
 
             if (username.isEmpty() || username.isBlank()) {
-                Toast.makeText(context, "Usernameni To'ldiring", Toast.LENGTH_SHORT).show()
+                binding.username.error = "To'ldiring"
                 return@setOnClickListener
             }
 
             if (password.isEmpty() || password.isBlank()) {
-                Toast.makeText(context, "Passwordni To'ldiring", Toast.LENGTH_SHORT).show()
+                binding.password.error = "To'ldiring"
                 return@setOnClickListener
             }
 
@@ -51,6 +53,15 @@ class LoginScreen : BaseFragment(R.layout.screen_login) {
                 binding.loginBtn.isGone = true
                 binding.progressBar.isVisible = true
             }
+
+        }
+
+        binding.registerBtn.setOnClickListener {
+
+            val url = "https://www.themoviedb.org/signup"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
 
         }
 
