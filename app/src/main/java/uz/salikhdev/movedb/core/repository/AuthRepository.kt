@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 class AuthRepository @Inject constructor(private val service: AuthService) {
 
-
     suspend fun getToken(): ResultWrapper<TokenResonse?, Any?> {
         return parseResponse(Dispatchers.IO) {
             service.getNewToken(API_KEY)
