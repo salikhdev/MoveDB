@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_mainScreen_to_profilePage"
             app:destination="@id/profilePage" />
+        <action
+            android:id="@+id/action_mainScreen_to_detailScreen"
+            app:destination="@id/detailScreen" />
     </fragment>
     <fragment
         android:id="@+id/homePage"
@@ -64,4 +67,9 @@
         android:name="uz.salikhdev.movedb.ui.main.save.SavePage"
         android:label="page_save"
         tools:layout="@layout/page_save" />
+    <fragment
+        android:id="@+id/detailScreen"
+        android:name="uz.salikhdev.movedb.ui.main.detail.DetailScreen"
+        android:label="screen_detail"
+        tools:layout="@layout/screen_detail" />
 </navigation>
