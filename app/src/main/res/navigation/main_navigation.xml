@@ -69,7 +69,11 @@
         tools:layout="@layout/page_save" />
     <fragment
         android:id="@+id/detailScreen"
-        android:name="uz.salikhdev.movedb.ui.main.detail.DetailScreen"
+        android:name="uz.salikhdev.movedb.ui.detail.DetailScreen"
         android:label="screen_detail"
-        tools:layout="@layout/screen_detail" />
+        tools:layout="@layout/screen_detail">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

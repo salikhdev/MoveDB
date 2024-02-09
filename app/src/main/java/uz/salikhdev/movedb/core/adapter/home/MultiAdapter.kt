@@ -12,6 +12,7 @@ import uz.salikhdev.movedb.databinding.ItemHomeParentBinding
 class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val data = ArrayList<BaseData>()
+    var onClickItem: ((id: Int) -> Unit)? = null
     fun setData(data: ArrayList<BaseData>) {
         this.data.clear()
         data.sortBy { it.getType() }
@@ -47,6 +48,11 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.parentRecycler.setHasFixedSize(true)
             adapter.setData(data.nowPlayResults)
 
+            adapter.onClickNowPlay = {
+                onClickItem?.invoke(it)
+            }
+
+
         }
 
     }
@@ -64,6 +70,11 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 LinearLayoutManager(binding.parentRecycler.context, RecyclerView.VERTICAL, false)
             binding.parentRecycler.setHasFixedSize(true)
             adapter.setData(data.popularResults)
+
+            adapter.onClickPopular = {
+                onClickItem?.invoke(it)
+            }
+
         }
 
     }

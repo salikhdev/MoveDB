@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import uz.salikhdev.movedb.core.network.AuthService
+import uz.salikhdev.movedb.core.network.DetailService
 import uz.salikhdev.movedb.core.network.HomeService
 import uz.salikhdev.movedb.core.network.ProfileService
 import javax.inject.Singleton
@@ -27,6 +28,11 @@ object ServiceModule {
     @[Provides Singleton]
     fun provideHomeService(retrofit: Retrofit): HomeService {
         return retrofit.create(HomeService::class.java)
+    }
+
+    @[Provides Singleton]
+    fun provideDetailService(retrofit: Retrofit): DetailService {
+        return retrofit.create(DetailService::class.java)
     }
 
 }

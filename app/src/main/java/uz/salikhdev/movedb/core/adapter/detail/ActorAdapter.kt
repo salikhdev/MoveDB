@@ -1,47 +1,42 @@
-package uz.salikhdev.movedb.core.adapter.home
+package uz.salikhdev.movedb.core.adapter.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.salikhdev.movedb.R
-import uz.salikhdev.movedb.core.model.home.now_play.NowPlayResult
-import uz.salikhdev.movedb.databinding.ItemNowShowingBinding
+import uz.salikhdev.movedb.core.model.actor.Cast
+import uz.salikhdev.movedb.databinding.ItemAuthorBinding
 
-class NowPlayAdapter : RecyclerView.Adapter<NowPlayAdapter.ViewHolder>() {
+class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
 
-    private val data = ArrayList<NowPlayResult>()
-    var onClickNowPlay: ((id: Int) -> Unit)? = null
+    private val data = ArrayList<Cast>()
 
-    fun setData(data: List<NowPlayResult>) {
+    fun setData(data: List<Cast>) {
         this.data.clear()
         this.data.addAll(data)
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val binding: ItemNowShowingBinding) :
+    inner class ViewHolder(private val binding: ItemAuthorBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bindData(data: NowPlayResult) {
+        fun bindData(data: Cast) {
 
             Glide.with(binding.root.context)
-                .load("https://image.tmdb.org/t/p/original/${data.posterPath}")
+                .load("https://image.tmdb.org/t/p/original/${data.profilePath}")
                 .error(R.drawable.person_placeholder)
                 .placeholder(R.drawable.person_placeholder)
                 .into(binding.image)
 
-            binding.filmName.text = data.title
-            binding.rating.text = String.format("%s/10 IMDb", data.voteAverage)
+            binding.name.text = data.originalName
 
-            itemView.setOnClickListener {
-                onClickNowPlay?.invoke(data.id)
-            }
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemNowShowingBinding.inflate(
+            ItemAuthorBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

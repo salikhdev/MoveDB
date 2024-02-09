@@ -13,6 +13,7 @@ import java.util.Collections
 class PopularAdapter : RecyclerView.Adapter<PopularAdapter.ViewHolder>() {
 
     private val data = ArrayList<PopularResult>()
+    var onClickPopular: ((id: Int) -> Unit)? = null
 
     fun setData(data: List<PopularResult>) {
         this.data.clear()
@@ -36,6 +37,9 @@ class PopularAdapter : RecyclerView.Adapter<PopularAdapter.ViewHolder>() {
             binding.date.text = data.releaseDate
             binding.genre.text = getGenre(data.genreIds[0])
 
+            itemView.setOnClickListener {
+                onClickPopular?.invoke(data.id)
+            }
 
         }
     }
