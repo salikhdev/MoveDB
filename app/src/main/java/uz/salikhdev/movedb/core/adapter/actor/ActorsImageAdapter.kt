@@ -1,4 +1,4 @@
-package uz.salikhdev.movedb.core.adapter.detail
+package uz.salikhdev.movedb.core.adapter.actor
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,12 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.salikhdev.movedb.R
 import uz.salikhdev.movedb.core.model.actor.Cast
-import uz.salikhdev.movedb.databinding.ItemAuthorBinding
+import uz.salikhdev.movedb.databinding.ItemActorBinding
 
-class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
-
+class ActorsImageAdapter : RecyclerView.Adapter<ActorsImageAdapter.ViewHolder>() {
     private val data = ArrayList<Cast>()
-    var actorClicked: ((data: Cast) -> Unit)? = null
 
     fun setData(data: List<Cast>) {
         this.data.clear()
@@ -19,27 +17,22 @@ class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val binding: ItemAuthorBinding) :
+    inner class ViewHolder(private val binding: ItemActorBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(data: Cast) {
-
             Glide.with(binding.root.context)
                 .load("https://image.tmdb.org/t/p/original/${data.profilePath}")
                 .error(R.drawable.person_placeholder)
                 .placeholder(R.drawable.person_placeholder)
-                .into(binding.image)
-
-            binding.name.text = data.originalName
-            let {
-                actorClicked?.invoke(data)
-            }
-
+                .into(binding.actorImage)
         }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemAuthorBinding.inflate(
+            ItemActorBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -52,6 +45,8 @@ class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindData(data = data[position])
+        holder.bindData(data[position])
     }
+
+
 }
