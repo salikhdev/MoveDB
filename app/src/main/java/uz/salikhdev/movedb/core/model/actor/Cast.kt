@@ -2,6 +2,7 @@ package uz.salikhdev.movedb.core.model.actor
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Cast(
     @SerializedName("adult")
@@ -28,4 +29,4 @@ data class Cast(
     val popularity: Double, // 169.622
     @SerializedName("profile_path")
     val profilePath: String // /lldeQ91GwIVff43JBrpdbAAeYWj.jpg
-)
+) : Serializable

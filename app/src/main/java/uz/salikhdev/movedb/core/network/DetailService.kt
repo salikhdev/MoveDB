@@ -23,4 +23,5 @@ interface DetailService {
         @Query("api_key") apiKey: String
     ): Response<ActorResponse?>
 
+
 }

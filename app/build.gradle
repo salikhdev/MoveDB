@@ -83,4 +83,7 @@ dependencies {
     // SmoothBar
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
 
+    implementation "androidx.room:room-runtime:2.6.1"
+    kapt "androidx.room:room-compiler:2.6.1"
+
 }

@@ -10,7 +10,6 @@ import uz.salikhdev.movedb.core.util.parseResponse
 import javax.inject.Inject
 
 class DetailRepository @Inject constructor(private val service: DetailService) {
-
     suspend fun getDetailData(movieId: Int): ResultWrapper<DetailResponse?, Any?> {
         return parseResponse(Dispatchers.IO) {
             service.getDetail(movieId, API_KEY)
@@ -22,6 +21,5 @@ class DetailRepository @Inject constructor(private val service: DetailService) {
             service.getActors(movieId, API_KEY)
         }
     }
-
 
 }
