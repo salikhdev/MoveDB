@@ -1,7 +1,6 @@
 package uz.salikhdev.movedb.core.di
 
 import android.content.Context
-import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
 import dagger.Provides
@@ -11,7 +10,6 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import uz.salikhdev.movedb.core.room.database.MovieDataBase
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -47,25 +45,5 @@ object NetworkModule {
             .build()
     }
 
-    @[Provides Singleton]
-    fun getDatabase(context: Context): MovieDataBase {
-        var INSTANCE: MovieDataBase? = null
-        if (INSTANCE == null) {
-            synchronized(this) {
-                INSTANCE = buildDatabase(context)
-            }
-        }
-        return INSTANCE!!
-    }
-
-    @[Provides Singleton]
-    fun buildDatabase(context: Context): MovieDataBase {
-        return Room.databaseBuilder(
-            context.applicationContext,
-            MovieDataBase::class.java,
-            "notes_database"
-        )
-            .build()
-    }
 
 }

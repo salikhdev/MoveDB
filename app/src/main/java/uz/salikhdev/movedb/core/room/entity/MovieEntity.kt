@@ -9,12 +9,8 @@ data class MovieEntity(
     @PrimaryKey
     val id: Int,
     val title: String?,
-    val rating: Int?,
-    val language: String?,
-    val genre: List<Int>?,
+    val rating: Double?,
+    val genre: Int?,
     val publishedTime: String?,
-    val budget: Int?,
-    val status: String?,
-    val overview: String?,
     val image: String?
 ) : Serializable

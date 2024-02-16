@@ -36,10 +36,7 @@ class HomePage : BaseFragment(R.layout.page_home) {
     private fun loadListener() {
         adapter.onClickItem = { id ->
             findNavController().navigate(
-                MainScreenDirections.actionMainScreenToDetailScreen(
-                    id,
-                    null
-                )
+                MainScreenDirections.actionMainScreenToDetailScreen(id)
             )
         }
     }

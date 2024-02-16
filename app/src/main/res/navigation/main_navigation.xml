@@ -51,9 +51,6 @@
         <action
             android:id="@+id/action_mainScreen_to_detailScreen"
             app:destination="@id/detailScreen" />
-        <action
-            android:id="@+id/action_mainScreen_to_actorScreen"
-            app:destination="@id/actorScreen" />
     </fragment>
     <fragment
         android:id="@+id/homePage"
@@ -78,18 +75,17 @@
         <argument
             android:name="id"
             app:argType="integer" />
-        <argument
-            android:name="movie"
-            app:argType="uz.salikhdev.movedb.core.room.entity.MovieEntity"
-            app:nullable="true" />
+        <action
+            android:id="@+id/action_detailScreen_to_actorScreen"
+            app:destination="@id/actorScreen" />
     </fragment>
     <fragment
         android:id="@+id/actorScreen"
-        android:name="uz.salikhdev.movedb.ui.detail.ActorScreen"
+        android:name="uz.salikhdev.movedb.ui.actor.ActorScreen"
         android:label="screen_actor"
         tools:layout="@layout/screen_actor">
         <argument
-            android:name="author"
-            app:argType="uz.salikhdev.movedb.core.model.actor.Cast" />
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>

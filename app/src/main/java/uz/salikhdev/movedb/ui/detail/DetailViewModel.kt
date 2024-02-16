@@ -4,10 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import uz.salikhdev.movedb.core.model.actor.ActorResponse
+import uz.salikhdev.movedb.core.model.actor.actor_list.ActorResponse
 import uz.salikhdev.movedb.core.model.detail.DetailResponse
 import uz.salikhdev.movedb.core.repository.DetailRepository
 import uz.salikhdev.movedb.core.room.database.MovieDataBase
@@ -52,29 +51,16 @@ class DetailViewModel @Inject constructor(
 
     }
 
-    fun getMoviesId(id: Int?) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val id = dataBase.moviesDao().getID()
-
-            id.forEach { id ->
-                if (id == id) {
-                    haveDataInDB.postValue(true)
-                    return@launch
-                }
-            }
-        }
-        haveDataInDB.postValue(false)
-    }
 
     fun saveData(movie: MovieEntity) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             dataBase.moviesDao().saveMovie(movie)
             haveDataInDB.postValue(true)
         }
     }
 
     fun deleteData(movie: MovieEntity) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             dataBase.moviesDao().deleteMovie(movie)
             haveDataInDB.postValue(false)
         }
@@ -105,6 +91,17 @@ class DetailViewModel @Inject constructor(
 
         }
 
+    }
+
+    fun isSave(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val ids = dataBase.moviesDao().getID()
+            if (ids.contains(id)) {
+                haveDataInDB.postValue(true)
+            } else {
+                haveDataInDB.postValue(false)
+            }
+        }
     }
 
 

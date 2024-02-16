@@ -1,7 +1,7 @@
 package uz.salikhdev.movedb.core.repository
 
 import kotlinx.coroutines.Dispatchers
-import uz.salikhdev.movedb.core.model.actor.ActorResponse
+import uz.salikhdev.movedb.core.model.actor.actor_list.ActorResponse
 import uz.salikhdev.movedb.core.model.detail.DetailResponse
 import uz.salikhdev.movedb.core.network.DetailService
 import uz.salikhdev.movedb.core.util.API_KEY

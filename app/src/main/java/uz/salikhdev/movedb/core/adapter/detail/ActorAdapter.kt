@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.salikhdev.movedb.R
-import uz.salikhdev.movedb.core.model.actor.Cast
+import uz.salikhdev.movedb.core.model.actor.actor_list.Cast
 import uz.salikhdev.movedb.databinding.ItemAuthorBinding
 
 class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
@@ -30,9 +30,11 @@ class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
                 .into(binding.image)
 
             binding.name.text = data.originalName
-            let {
+
+            itemView.setOnClickListener {
                 actorClicked?.invoke(data)
             }
+
 
         }
     }

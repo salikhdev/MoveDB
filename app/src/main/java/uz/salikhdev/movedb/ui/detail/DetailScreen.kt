@@ -2,7 +2,6 @@ package uz.salikhdev.movedb.ui.detail
 
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,16 +13,14 @@ import uz.salikhdev.movedb.core.common.BaseFragment
 import uz.salikhdev.movedb.core.room.entity.MovieEntity
 import uz.salikhdev.movedb.core.util.gone
 import uz.salikhdev.movedb.databinding.ScreenDetailBinding
-import uz.salikhdev.movedb.ui.main.MainScreenDirections
 
 class DetailScreen : BaseFragment(R.layout.screen_detail) {
-
 
     private val binding by viewBinding(ScreenDetailBinding::bind)
     private val viewModel: DetailViewModel by viewModels()
     private val args: DetailScreenArgs by navArgs()
     private val actorAdapter by lazy { ActorAdapter() }
-    val movie = args.movie
+    private lateinit var movie: MovieEntity
     private var isSave = false
 
     override fun onViewCreated(view: View) {
@@ -31,51 +28,48 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
 
         viewModel.getDetail(args.id)
         viewModel.getActor(args.id)
-        viewModel.getMoviesId(args.id)
+        viewModel.isSave(args.id)
         setAdapter()
-        loadListener()
         observer()
+        loadListener()
 
     }
 
     private fun loadListener() {
         actorAdapter.actorClicked = { author ->
-            findNavController().navigate(MainScreenDirections.actionMainScreenToActorScreen(author))
+            findNavController().navigate(
+                DetailScreenDirections.actionDetailScreenToActorScreen(
+                    author.id
+                )
+            )
         }
         binding.save.setOnClickListener {
             if (isSave) {
                 val data = MovieEntity(
-                    id = movie!!.id,
+                    id = movie.id,
                     title = movie.title,
                     rating = movie.rating,
-                    language = movie.language,
                     genre = movie.genre,
                     publishedTime = movie.publishedTime,
-                    budget = movie.budget,
-                    status = movie.status,
-                    overview = movie.overview,
                     image = movie.image
                 )
-                binding.save.setBackgroundResource(R.drawable.bottom_save_btn)
+                binding.save.setImageDrawable(resources.getDrawable(R.drawable.bottom_save_btn))
                 viewModel.deleteData(data)
-                Toast.makeText(context, "Deleted from favourites", Toast.LENGTH_SHORT).show()
             } else {
                 val data = MovieEntity(
-                    id = movie!!.id,
+                    id = movie.id,
                     title = movie.title,
                     rating = movie.rating,
-                    language = movie.language,
                     genre = movie.genre,
                     publishedTime = movie.publishedTime,
-                    budget = movie.budget,
-                    status = movie.status,
-                    overview = movie.overview,
                     image = movie.image
                 )
-                binding.save.setBackgroundResource(R.drawable.full_save)
+                binding.save.setImageDrawable(resources.getDrawable(R.drawable.full_save))
                 viewModel.saveData(data)
-                Toast.makeText(context, "Saved to favourites", Toast.LENGTH_SHORT).show()
             }
+        }
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
@@ -108,6 +102,16 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
 
                 binding.loaderView.gone()
                 binding.progressBar.gone()
+
+                movie = MovieEntity(
+                    it.id,
+                    it.title,
+                    it.voteAverage,
+                    it.genres[0].id,
+                    it.releaseDate,
+                    it.posterPath
+                )
+
             }
         }
         viewModel.actorLD.observe(viewLifecycleOwner) { actors ->
@@ -119,16 +123,16 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
         viewModel.haveDataInDB.observe(viewLifecycleOwner) {
             isSave = it
             if (it) {
-                binding.save.setBackgroundResource(R.drawable.bottom_save_btn)
+                binding.save.setImageDrawable(resources.getDrawable(R.drawable.full_save))
             } else {
-                binding.save.setBackgroundResource(R.drawable.full_save)
+                binding.save.setImageDrawable(resources.getDrawable(R.drawable.bottom_save_btn))
             }
         }
 
+    }
 
     override fun onStop() {
         super.onStop()
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
-
 }

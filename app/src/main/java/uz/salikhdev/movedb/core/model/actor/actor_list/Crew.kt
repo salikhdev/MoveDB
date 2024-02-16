@@ -1,4 +1,4 @@
-package uz.salikhdev.movedb.core.model.actor
+package uz.salikhdev.movedb.core.model.actor.actor_list
 
 
 import com.google.gson.annotations.SerializedName
