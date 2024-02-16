@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import uz.salikhdev.movedb.R
 import uz.salikhdev.movedb.core.adapter.detail.ActorAdapter
 import uz.salikhdev.movedb.core.common.BaseFragment
+import uz.salikhdev.movedb.core.util.gone
 import uz.salikhdev.movedb.databinding.ScreenDetailBinding
 
 class DetailScreen : BaseFragment(R.layout.screen_detail) {
@@ -55,6 +56,9 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
                 binding.status.text = "Stastus\n${it.status}"
                 binding.genre.text = it.genres[0].name
                 binding.language.text = it.originalLanguage.uppercase()
+
+                binding.loaderView.gone()
+                binding.progressBar.gone()
             }
         }
         viewModel.actorLD.observe(viewLifecycleOwner) { actors ->

@@ -19,7 +19,6 @@
         android:layout_height="300dp"
         android:background="@drawable/gradient_for_bag" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -294,5 +293,24 @@
 
 
     </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/loaderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/baseColor">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="#E68FA3C3"
+            android:visibility="visible" />
+
+    </FrameLayout>
+
 
 </FrameLayout>
