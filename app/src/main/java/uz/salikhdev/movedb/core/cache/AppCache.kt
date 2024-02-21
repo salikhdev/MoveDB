@@ -12,6 +12,10 @@ class AppCache(context: Context) {
         sharedPreferences.edit().putString(SESSION_KEY, token).apply()
     }
 
+    fun removeSession() {
+        sharedPreferences.edit().remove(SESSION_KEY).apply()
+    }
+
     fun getSessionId(): String {
         return sharedPreferences.getString(SESSION_KEY, "")!!
     }

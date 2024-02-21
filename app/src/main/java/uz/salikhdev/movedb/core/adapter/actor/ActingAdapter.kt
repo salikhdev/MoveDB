@@ -1,4 +1,4 @@
-package uz.salikhdev.movedb.core.adapter.actor_multi.acting
+package uz.salikhdev.movedb.core.adapter.actor
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ class ActingAdapter : RecyclerView.Adapter<ActingAdapter.ViewHolder>() {
     private val data = ArrayList<Crew>()
     var onClickActing: ((id: Int) -> Unit)? = null
 
-    fun setData(data: ArrayList<Crew>) {
+    fun setData(data: List<Crew>) {
         this.data.addAll(data)
         notifyDataSetChanged()
     }
@@ -27,6 +27,11 @@ class ActingAdapter : RecyclerView.Adapter<ActingAdapter.ViewHolder>() {
                 .placeholder(R.drawable.person_placeholder)
                 .into(binding.image)
             binding.title.text = data.title
+
+            itemView.setOnClickListener {
+                onClickActing?.invoke(data.id)
+            }
+
         }
     }
 

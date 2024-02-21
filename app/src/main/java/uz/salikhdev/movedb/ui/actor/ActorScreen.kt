@@ -6,7 +6,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.salikhdev.movedb.R
-import uz.salikhdev.movedb.core.adapter.actor_multi.multi.ActorMulti
+import uz.salikhdev.movedb.core.adapter.actor.ActingAdapter
+import uz.salikhdev.movedb.core.adapter.actor.ActorsImageAdapter
 import uz.salikhdev.movedb.core.common.BaseFragment
 import uz.salikhdev.movedb.core.util.ZoomOutPageTransformer
 import uz.salikhdev.movedb.databinding.ScreenActorBinding
@@ -14,7 +15,8 @@ import uz.salikhdev.movedb.databinding.ScreenActorBinding
 class ActorScreen : BaseFragment(R.layout.screen_actor) {
 
     private val binding by viewBinding(ScreenActorBinding::bind)
-    private val adapter by lazy { ActorMulti() }
+    private val adapterImage by lazy { ActorsImageAdapter() }
+    private val adapterAction by lazy { ActingAdapter() }
     private val viewModel: ActorViewModel by viewModels()
     private val args: ActorScreenArgs by navArgs()
     override fun onViewCreated(view: View) {
@@ -28,18 +30,26 @@ class ActorScreen : BaseFragment(R.layout.screen_actor) {
     }
 
     private fun setAdapter() {
-        binding.viewPager.adapter = adapter
+        binding.viewPager.adapter = adapterImage
         binding.viewPager.offscreenPageLimit = 3
         binding.viewPager.clipChildren = false
         binding.viewPager.clipToPadding = false
         binding.viewPager.setPageTransformer(ZoomOutPageTransformer())
+
+        binding.recyclerView.adapter = adapterAction
+        binding.recyclerView.setHasFixedSize(true)
+
+        adapterAction.onClickActing = {
+            findNavController().navigate(ActorScreenDirections.actionActorScreenToDetailScreen(it))
+        }
+
     }
 
     private fun observer() {
 
         viewModel.imagesLD.observe(viewLifecycleOwner) { response ->
             response?.let {
-                // adapter.setData(it.profiles)
+                adapterImage.setData(it.profiles)
             }
         }
 
@@ -52,7 +62,7 @@ class ActorScreen : BaseFragment(R.layout.screen_actor) {
 
         viewModel.actingLD.observe(viewLifecycleOwner) { acting ->
             acting?.let {
-                //adapter.setData()
+                adapterAction.setData(it.crew)
             }
         }
 

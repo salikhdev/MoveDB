@@ -6,6 +6,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import uz.salikhdev.movedb.core.model.actor.actor_list.ActorResponse
 import uz.salikhdev.movedb.core.model.detail.DetailResponse
+import uz.salikhdev.movedb.core.model.trailers.TrailersResponse
 
 interface DetailService {
 
@@ -22,6 +23,13 @@ interface DetailService {
         @Path("movie_id") id: Int,
         @Query("api_key") apiKey: String
     ): Response<ActorResponse?>
+
+
+    @GET("3/movie/{movie_id}/videos")
+    suspend fun getTrailers(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey: String
+    ): Response<TrailersResponse?>
 
 
 }

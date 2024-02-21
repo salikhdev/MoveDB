@@ -1,5 +1,7 @@
 package uz.salikhdev.movedb.ui.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.viewModels
@@ -9,10 +11,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import uz.salikhdev.movedb.R
 import uz.salikhdev.movedb.core.adapter.detail.ActorAdapter
+import uz.salikhdev.movedb.core.adapter.detail.TrailersAdapter
 import uz.salikhdev.movedb.core.common.BaseFragment
 import uz.salikhdev.movedb.core.room.entity.MovieEntity
 import uz.salikhdev.movedb.core.util.gone
 import uz.salikhdev.movedb.databinding.ScreenDetailBinding
+
 
 class DetailScreen : BaseFragment(R.layout.screen_detail) {
 
@@ -20,6 +24,7 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
     private val viewModel: DetailViewModel by viewModels()
     private val args: DetailScreenArgs by navArgs()
     private val actorAdapter by lazy { ActorAdapter() }
+    private val trailerAdapter by lazy { TrailersAdapter() }
     private lateinit var movie: MovieEntity
     private var isSave = false
 
@@ -27,6 +32,7 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
         viewModel.getDetail(args.id)
+        viewModel.getTrails(args.id)
         viewModel.getActor(args.id)
         viewModel.isSave(args.id)
         setAdapter()
@@ -43,6 +49,12 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
                 )
             )
         }
+        trailerAdapter.onClickTrailer = { url ->
+            val webIntent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=$url"))
+            startActivity(webIntent)
+        }
+
         binding.save.setOnClickListener {
             if (isSave) {
                 val data = MovieEntity(
@@ -76,6 +88,9 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
     private fun setAdapter() {
         binding.recyclerViewActors.adapter = actorAdapter
         binding.recyclerViewActors.setHasFixedSize(true)
+
+        binding.recyclerViewTrailers.adapter = trailerAdapter
+        binding.recyclerViewTrailers.setHasFixedSize(true)
     }
 
     private fun observer() {
@@ -117,6 +132,12 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
         viewModel.actorLD.observe(viewLifecycleOwner) { actors ->
             actors?.let {
                 actorAdapter.setData(it.cast)
+            }
+        }
+
+        viewModel.trailsLD.observe(viewLifecycleOwner) { trailes ->
+            trailes?.let {
+                trailerAdapter.setData(it.trailersResults)
             }
         }
 

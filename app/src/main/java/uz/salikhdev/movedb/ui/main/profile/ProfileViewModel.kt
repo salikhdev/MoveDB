@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import uz.salikhdev.movedb.core.cache.AppCache
+import uz.salikhdev.movedb.core.model.login.MessageResponse
+import uz.salikhdev.movedb.core.model.login.SessionRequest
 import uz.salikhdev.movedb.core.model.profile.ProfileDetailResponse
 import uz.salikhdev.movedb.core.repository.ProfileRepository
 import uz.salikhdev.movedb.core.util.ResultWrapper
@@ -19,6 +22,7 @@ class ProfileViewModel @Inject constructor(
 ) : ViewModel() {
 
     val profileDetailLD: MutableLiveData<ProfileDetailResponse?> = MutableLiveData()
+    val logOutLD: MutableLiveData<MessageResponse?> = MutableLiveData()
     val errorLD: MutableLiveData<String> = MutableLiveData()
 
 
@@ -47,6 +51,37 @@ class ProfileViewModel @Inject constructor(
 
         }
 
+    }
+
+    fun logOut() {
+
+        val sessionid = cache.getSessionId()
+
+        viewModelScope.launch(Dispatchers.IO) {
+
+            val session = SessionRequest(sessionid)
+
+            when (val result = response.logOut(session)) {
+                is ResultWrapper.ErrorResponse -> {
+                    errorLD.postValue(result.code.toString())
+                }
+
+                is ResultWrapper.NetworkError -> {
+                    errorLD.postValue("NETWORK_ERROR")
+                }
+
+                is ResultWrapper.Success -> {
+                    logOutLD.postValue(result.response)
+                }
+            }
+
+        }
+
+    }
+
+    fun isFirstAndCleaCache() {
+        cache.isFirst(true)
+        cache.removeSession()
     }
 
 }
