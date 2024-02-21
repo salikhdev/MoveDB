@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import uz.salikhdev.movedb.core.network.ActingService
 import uz.salikhdev.movedb.core.network.ActorService
 import uz.salikhdev.movedb.core.network.AuthService
 import uz.salikhdev.movedb.core.network.DetailService
@@ -39,6 +40,11 @@ object ServiceModule {
     @[Provides Singleton]
     fun provideActorService(retrofit: Retrofit): ActorService {
         return retrofit.create(ActorService::class.java)
+    }
+
+    @[Provides Singleton]
+    fun provideActingService(retrofit: Retrofit): ActingService {
+        return retrofit.create(ActingService::class.java)
     }
 
 

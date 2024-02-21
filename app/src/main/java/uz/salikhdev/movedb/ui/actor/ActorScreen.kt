@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.salikhdev.movedb.R
-import uz.salikhdev.movedb.core.adapter.actor.ActorsImageAdapter
+import uz.salikhdev.movedb.core.adapter.actor_multi.multi.ActorMulti
 import uz.salikhdev.movedb.core.common.BaseFragment
 import uz.salikhdev.movedb.core.util.ZoomOutPageTransformer
 import uz.salikhdev.movedb.databinding.ScreenActorBinding
@@ -14,16 +14,16 @@ import uz.salikhdev.movedb.databinding.ScreenActorBinding
 class ActorScreen : BaseFragment(R.layout.screen_actor) {
 
     private val binding by viewBinding(ScreenActorBinding::bind)
-    private val adapter by lazy { ActorsImageAdapter() }
+    private val adapter by lazy { ActorMulti() }
     private val viewModel: ActorViewModel by viewModels()
     private val args: ActorScreenArgs by navArgs()
     override fun onViewCreated(view: View) {
 
         viewModel.getActorImages(args.id)
         viewModel.getActorDetail(args.id)
+        viewModel.getActingFilms(args.id)
         setAdapter()
         observer()
-
         clickListener()
     }
 
@@ -39,7 +39,7 @@ class ActorScreen : BaseFragment(R.layout.screen_actor) {
 
         viewModel.imagesLD.observe(viewLifecycleOwner) { response ->
             response?.let {
-                adapter.setData(it.profiles)
+                // adapter.setData(it.profiles)
             }
         }
 
@@ -47,6 +47,12 @@ class ActorScreen : BaseFragment(R.layout.screen_actor) {
             response?.let {
                 binding.authorName.text = it.name
                 binding.biography.text = it.biography
+            }
+        }
+
+        viewModel.actingLD.observe(viewLifecycleOwner) { acting ->
+            acting?.let {
+                //adapter.setData()
             }
         }
 

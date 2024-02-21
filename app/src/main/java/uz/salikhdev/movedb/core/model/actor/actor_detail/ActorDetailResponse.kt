@@ -2,6 +2,7 @@ package uz.salikhdev.movedb.core.model.actor.actor_detail
 
 
 import com.google.gson.annotations.SerializedName
+import uz.salikhdev.movedb.core.model.home.BaseData
 
 data class ActorDetailResponse(
     @SerializedName("adult")
@@ -32,4 +33,9 @@ data class ActorDetailResponse(
     val popularity: Double, // 82.989
     @SerializedName("profile_path")
     val profilePath: String // /xndWFsBlClOJFRdhSt4NBwiPq2o.jpg
-)
+) : BaseData() {
+    override fun getType(): Int {
+        return ACTOR
+    }
+
+}

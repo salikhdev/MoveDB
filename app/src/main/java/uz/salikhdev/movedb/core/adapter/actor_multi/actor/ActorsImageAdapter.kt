@@ -1,4 +1,4 @@
-package uz.salikhdev.movedb.core.adapter.actor
+package uz.salikhdev.movedb.core.adapter.actor_multi.actor
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

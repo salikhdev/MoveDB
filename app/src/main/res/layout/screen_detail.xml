@@ -228,7 +228,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Vehicula mollis posidonium inani cu ligula efficitur pertinacia. Augue expetendis maluisset non per sit. Blandit atomorum atomorum fusce option vivamus elit augue habitasse alterum. Venenatis egestas option mentitum scelerisque tortor tempor. Fuisset omittam maluisset mea audire tempor. Nam per massa nam simul salutatus animal. Omnesque cras petentium efficitur conclusionemque amet quot equidem fabulas. Quas ornatus regione montes dicunt. Sit curae aeque graecis hinc vim mus accusata platonem. Constituam honestatis nam sale augue definitiones."
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="@+id/title"

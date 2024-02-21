@@ -66,7 +66,11 @@
         android:id="@+id/savePage"
         android:name="uz.salikhdev.movedb.ui.main.save.SavePage"
         android:label="page_save"
-        tools:layout="@layout/page_save" />
+        tools:layout="@layout/page_save">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/detailScreen"
         android:name="uz.salikhdev.movedb.ui.detail.DetailScreen"
