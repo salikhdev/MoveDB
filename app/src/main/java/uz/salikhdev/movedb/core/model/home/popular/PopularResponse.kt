@@ -3,6 +3,7 @@ package uz.salikhdev.movedb.core.model.home.popular
 
 import com.google.gson.annotations.SerializedName
 import uz.salikhdev.movedb.core.model.home.BaseData
+import java.io.Serializable
 
 data class PopularResponse(
     @SerializedName("page")
@@ -13,7 +14,7 @@ data class PopularResponse(
     val totalPages: Int, // 42661
     @SerializedName("total_results")
     val totalResults: Int // 853212
-) : BaseData() {
+) : BaseData(), Serializable {
     override fun getType(): Int {
         return POPULAR
     }

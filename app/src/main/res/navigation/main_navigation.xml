@@ -56,6 +56,9 @@
             app:destination="@id/loginScreen"
             app:popUpTo="@id/mainScreen"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainScreen_to_seeMoreScreen"
+            app:destination="@id/seeMoreScreen" />
     </fragment>
     <fragment
         android:id="@+id/homePage"
@@ -96,4 +99,10 @@
             android:id="@+id/action_actorScreen_to_detailScreen"
             app:destination="@id/detailScreen" />
     </fragment>
+    <fragment
+        android:id="@+id/seeMoreScreen"
+        android:name="uz.salikhdev.movedb.ui.seeMore.SeeMoreScreen"
+        android:label="screen_see_more"
+        tools:layout="@layout/screen_see_more" />
+
 </navigation>

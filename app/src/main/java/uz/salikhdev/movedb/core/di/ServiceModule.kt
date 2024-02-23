@@ -11,6 +11,7 @@ import uz.salikhdev.movedb.core.network.AuthService
 import uz.salikhdev.movedb.core.network.DetailService
 import uz.salikhdev.movedb.core.network.HomeService
 import uz.salikhdev.movedb.core.network.ProfileService
+import uz.salikhdev.movedb.core.network.SeeMoreService
 import javax.inject.Singleton
 
 @Module
@@ -45,6 +46,11 @@ object ServiceModule {
     @[Provides Singleton]
     fun provideActingService(retrofit: Retrofit): ActingService {
         return retrofit.create(ActingService::class.java)
+    }
+
+    @[Provides Singleton]
+    fun provideSeeMoreService(retrofit: Retrofit): SeeMoreService {
+        return retrofit.create(SeeMoreService::class.java)
     }
 
 

@@ -2,6 +2,7 @@ package uz.salikhdev.movedb.core.model.home.now_play
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class NowPlayResult(
     @SerializedName("adult")
@@ -32,4 +33,4 @@ data class NowPlayResult(
     val voteAverage: Double, // 7.456
     @SerializedName("vote_count")
     val voteCount: Int // 707
-)
+) : Serializable

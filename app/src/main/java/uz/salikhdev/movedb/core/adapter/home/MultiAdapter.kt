@@ -13,6 +13,8 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val data = ArrayList<BaseData>()
     var onClickItem: ((id: Int) -> Unit)? = null
+    var seeNowPlayingClick: (() -> Unit)? = null
+    var seePopularClick: (() -> Unit)? = null
     fun setData(data: ArrayList<BaseData>) {
         this.data.clear()
         data.sortBy { it.getType() }
@@ -48,10 +50,13 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.parentRecycler.setHasFixedSize(true)
             adapter.setData(data.nowPlayResults)
 
+            binding.seeMore.setOnClickListener {
+                seeNowPlayingClick?.invoke()
+            }
+
             adapter.onClickNowPlay = {
                 onClickItem?.invoke(it)
             }
-
 
         }
 

@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:drawableStart="@drawable/sharp_brightness_low_24"
+            android:drawableStart="@drawable/round_star_24"
             android:drawablePadding="5dp"
             android:ellipsize="end"
             android:maxLines="2"

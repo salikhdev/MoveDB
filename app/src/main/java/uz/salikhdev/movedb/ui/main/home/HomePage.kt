@@ -39,6 +39,15 @@ class HomePage : BaseFragment(R.layout.page_home) {
                 MainScreenDirections.actionMainScreenToDetailScreen(id)
             )
         }
+        adapter.seeNowPlayingClick = {
+            findNavController().navigate(
+                MainScreenDirections.actionMainScreenToSeeMoreScreen()
+            )
+        }
+        adapter.seePopularClick = {
+            findNavController().navigate(MainScreenDirections.actionMainScreenToSeeMoreScreen())
+        }
+
     }
 
     private fun setAdapter() {

@@ -2,6 +2,7 @@ package uz.salikhdev.movedb.core.model.home.popular
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class PopularResult(
     @SerializedName("adult")
@@ -32,4 +33,4 @@ data class PopularResult(
     val voteAverage: Double, // 7.46
     @SerializedName("vote_count")
     val voteCount: Int // 704
-)
+) : Serializable

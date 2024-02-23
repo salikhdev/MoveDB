@@ -3,6 +3,7 @@ package uz.salikhdev.movedb.core.model.home.now_play
 
 import com.google.gson.annotations.SerializedName
 import uz.salikhdev.movedb.core.model.home.BaseData
+import java.io.Serializable
 
 data class NowPlayingResponse(
     @SerializedName("dates")
@@ -15,7 +16,7 @@ data class NowPlayingResponse(
     val totalPages: Int, // 153
     @SerializedName("total_results")
     val totalResults: Int // 3047
-) : BaseData() {
+) : BaseData(), Serializable {
     override fun getType(): Int {
         return NOW_PLAYING
     }
