@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.salikhdev.movedb.R
 import uz.salikhdev.movedb.core.model.home.popular.PopularResult
+import uz.salikhdev.movedb.core.util.getGenre
 import uz.salikhdev.movedb.databinding.ItemPopularBinding
 
 class SeePopularAdapter : RecyclerView.Adapter<SeePopularAdapter.ViewHolder>() {
@@ -37,7 +38,9 @@ class SeePopularAdapter : RecyclerView.Adapter<SeePopularAdapter.ViewHolder>() {
 
             binding.filmName.text = data.title
             binding.rating.text = String.format("%s/10 IMDb", data.voteAverage)
-
+            data.genreIds.let {
+                binding.genre.text = getGenre(it[0])
+            }
             itemView.setOnClickListener {
                 onClick?.invoke(data.id)
             }
@@ -59,7 +62,7 @@ class SeePopularAdapter : RecyclerView.Adapter<SeePopularAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (data.size - 3 <= position) {
+        if (data.size - 4 <= position) {
             nextPage?.invoke()
         }
         holder.bindData(data[position])

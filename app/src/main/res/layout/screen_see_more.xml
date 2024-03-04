@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/baseColorHint"
     tools:context=".ui.seeMore.SeeMoreScreen">
 
     <FrameLayout
@@ -37,6 +39,7 @@
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -47,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:indeterminateTint="#E68FA3C3"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
     </FrameLayout>
 

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.salikhdev.movedb.R
 import uz.salikhdev.movedb.core.room.entity.MovieEntity
-import uz.salikhdev.movedb.core.util.getGenre
 import uz.salikhdev.movedb.databinding.ItemPopularBinding
 
 class FavAdapter : RecyclerView.Adapter<FavAdapter.ViewHolder>() {
@@ -33,7 +32,7 @@ class FavAdapter : RecyclerView.Adapter<FavAdapter.ViewHolder>() {
             binding.filmName.text = data.title
             binding.rating.text = String.format("%s/10 IMDb", data.rating)
             binding.date.text = data.publishedTime
-            binding.genre.text = data.genre?.let { getGenre(it) }
+
             itemView.setOnClickListener {
                 onClickSave?.invoke(data.id)
             }

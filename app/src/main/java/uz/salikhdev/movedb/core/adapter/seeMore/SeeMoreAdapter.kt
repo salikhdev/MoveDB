@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.salikhdev.movedb.R
 import uz.salikhdev.movedb.core.model.home.now_play.NowPlayResult
+import uz.salikhdev.movedb.core.util.getGenre
 import uz.salikhdev.movedb.databinding.ItemPopularBinding
 
 class SeeMoreAdapter : RecyclerView.Adapter<SeeMoreAdapter.ViewHolder>() {
@@ -36,6 +37,9 @@ class SeeMoreAdapter : RecyclerView.Adapter<SeeMoreAdapter.ViewHolder>() {
 
             binding.filmName.text = data.title
             binding.rating.text = String.format("%s/10 IMDb", data.voteAverage)
+            data.genreIds.let {
+                binding.genre.text = getGenre(it[0])
+            }
 
             itemView.setOnClickListener {
                 onClick?.invoke(data.id)

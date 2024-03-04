@@ -13,7 +13,7 @@ class SplashViewModel @Inject constructor(private val cache: AppCache) : ViewMod
     val isFirsLD: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getIsFirs() {
-        isFirsLD.value = cache.getIsFirst()
+        isFirsLD.value = cache.isFirst
     }
 
 

@@ -1,31 +1,19 @@
 package uz.salikhdev.movedb.core.cache
 
 import android.content.Context
+import com.securepreferences.SecurePreferences
+import uz.salikhdev.movedb.core.util.BooleanPreference
+import uz.salikhdev.movedb.core.util.StringPreference
+import javax.inject.Singleton
 
+@Singleton
 class AppCache(context: Context) {
 
-    private val sharedPreferences = context.getSharedPreferences("app_cache", Context.MODE_PRIVATE)
-    private val SESSION_KEY = "SESSIOMN_KEY"
-    private val IS_FIRST = "IS_FIRS"
+    private val KEY = "AJHKLSFHKRWadf3io23jr43dAfdpskjfsodijf32"
+    private val securePreferences = SecurePreferences(context, KEY, "local_storage.xml")
 
-    fun saveSession(token: String) {
-        sharedPreferences.edit().putString(SESSION_KEY, token).apply()
-    }
+    var isFirst: Boolean by BooleanPreference(securePreferences, true)
+    var sessionId: String by StringPreference(securePreferences, "")
 
-    fun removeSession() {
-        sharedPreferences.edit().remove(SESSION_KEY).apply()
-    }
-
-    fun getSessionId(): String {
-        return sharedPreferences.getString(SESSION_KEY, "")!!
-    }
-
-    fun isFirst(isFirst: Boolean) {
-        sharedPreferences.edit().putBoolean(IS_FIRST, isFirst).apply()
-    }
-
-    fun getIsFirst(): Boolean {
-        return sharedPreferences.getBoolean(IS_FIRST, true)
-    }
 
 }

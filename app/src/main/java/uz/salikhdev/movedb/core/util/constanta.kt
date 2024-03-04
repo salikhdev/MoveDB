@@ -4,7 +4,8 @@ import android.view.View
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 
-const val API_KEY = "10137bab07a7a987b23a902a78d6986c"
+const val NOW_PLAY = "nowplaying"
+const val POPULAR = "popular"
 
 
 val genres = mapOf(

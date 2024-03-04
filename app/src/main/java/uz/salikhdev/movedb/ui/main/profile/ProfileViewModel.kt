@@ -28,7 +28,7 @@ class ProfileViewModel @Inject constructor(
 
     fun getProfileDetail() {
 
-        val sessionId = cache.getSessionId()
+        val sessionId = cache.sessionId
 
         viewModelScope.launch {
 
@@ -55,7 +55,7 @@ class ProfileViewModel @Inject constructor(
 
     fun logOut() {
 
-        val sessionid = cache.getSessionId()
+        val sessionid = cache.sessionId
 
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -80,8 +80,8 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun isFirstAndCleaCache() {
-        cache.isFirst(true)
-        cache.removeSession()
+        cache.isFirst = true
+        cache.sessionId = ""
     }
 
 }

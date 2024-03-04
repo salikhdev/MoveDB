@@ -103,6 +103,13 @@
         android:id="@+id/seeMoreScreen"
         android:name="uz.salikhdev.movedb.ui.seeMore.SeeMoreScreen"
         android:label="screen_see_more"
-        tools:layout="@layout/screen_see_more" />
+        tools:layout="@layout/screen_see_more">
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_seeMoreScreen_to_detailScreen"
+            app:destination="@id/detailScreen" />
+    </fragment>
 
 </navigation>
