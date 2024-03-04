@@ -16,9 +16,9 @@ class SeeMoreViewModel @Inject constructor(private val repository: SeeMoreReposi
     ViewModel() {
 
     val nowPlayingLD: MutableLiveData<NowPlayingResponse?> = MutableLiveData()
-    private var page = 1
     val errorLD: MutableLiveData<String?> = MutableLiveData()
     val popularLD: MutableLiveData<PopularResponse?> = MutableLiveData()
+    private var page = 1
 
     fun getNowPlaying() {
         viewModelScope.launch {

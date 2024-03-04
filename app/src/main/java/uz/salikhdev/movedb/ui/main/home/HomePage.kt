@@ -11,6 +11,8 @@ import uz.salikhdev.movedb.core.adapter.home.MultiAdapter
 import uz.salikhdev.movedb.core.common.BaseFragment
 import uz.salikhdev.movedb.core.model.home.now_play.NowPlayingResponse
 import uz.salikhdev.movedb.core.model.home.popular.PopularResponse
+import uz.salikhdev.movedb.core.util.NOW_PLAY
+import uz.salikhdev.movedb.core.util.POPULAR
 import uz.salikhdev.movedb.core.util.gone
 import uz.salikhdev.movedb.core.util.visible
 import uz.salikhdev.movedb.databinding.PageHomeBinding
@@ -41,11 +43,13 @@ class HomePage : BaseFragment(R.layout.page_home) {
         }
         adapter.seeNowPlayingClick = {
             findNavController().navigate(
-                MainScreenDirections.actionMainScreenToSeeMoreScreen()
+                MainScreenDirections.actionMainScreenToSeeMoreScreen(NOW_PLAY)
             )
         }
         adapter.seePopularClick = {
-            findNavController().navigate(MainScreenDirections.actionMainScreenToSeeMoreScreen())
+            findNavController().navigate(
+                MainScreenDirections.actionMainScreenToSeeMoreScreen(POPULAR)
+            )
         }
 
     }

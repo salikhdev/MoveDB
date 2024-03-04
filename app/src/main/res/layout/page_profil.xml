@@ -32,12 +32,6 @@
             android:textSize="18sp"
             android:textStyle="normal" />
 
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center|end"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/set" />
 
     </FrameLayout>
 
@@ -65,27 +59,12 @@
         app:layout_constraintTop_toBottomOf="@+id/userProfilePhoto" />
 
 
-    <TextView
-        android:id="@+id/userEmailAdress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="sevanislamova@gmail.com"
-        android:textColor="@color/white"
-        android:textSize="10sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
-
     <FrameLayout
-        android:layout_width="250dp"
         android:id="@+id/logOut"
-        android:layout_height="40dp"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="25dp"
         android:background="@drawable/corner_for_button"
-        android:drawableStart="@drawable/log"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -94,10 +73,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawableStart="@drawable/log"
             android:drawablePadding="10dp"
             android:text="LogOut"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="normal" />
 

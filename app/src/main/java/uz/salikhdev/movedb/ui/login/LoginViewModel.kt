@@ -64,7 +64,7 @@ class LoginViewModel @Inject constructor(
                 is ResultWrapper.Success -> {
                     result.response?.let {
                         sessionLD.value = it
-                        cache.isFirst(false)
+                        cache.isFirst = false
                     }
                 }
             }
@@ -99,7 +99,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun saveSessionIdToStorage(session: String) {
-        cache.saveSession(session)
+        cache.sessionId = session
     }
 
 }

@@ -76,6 +76,10 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.parentRecycler.setHasFixedSize(true)
             adapter.setData(data.popularResults)
 
+            binding.seeMore.setOnClickListener {
+                seePopularClick?.invoke()
+            }
+
             adapter.onClickPopular = {
                 onClickItem?.invoke(it)
             }
