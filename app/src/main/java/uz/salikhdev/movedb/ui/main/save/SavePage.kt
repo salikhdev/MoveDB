@@ -32,14 +32,13 @@ class SavePage : BaseFragment(R.layout.page_save) {
     }
 
     private fun setListener() {
-        binding.backButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         adapter.onClickSave = {
             findNavController().navigate(MainScreenDirections.actionMainScreenToDetailScreen(it))
         }
-
+        /*binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }*/
     }
 
     private fun setAdapter() {

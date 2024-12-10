@@ -19,6 +19,7 @@ class ProfilePage : BaseFragment(R.layout.page_profil) {
         viewModel.getProfileDetail()
         setListener()
         observer()
+
     }
 
     private fun setListener() {
@@ -39,6 +40,9 @@ class ProfilePage : BaseFragment(R.layout.page_profil) {
                 .show()
 
         }
+        /*binding.back.setOnClickListener {
+            findNavController().popBackStack()
+        }*/
 
     }
 

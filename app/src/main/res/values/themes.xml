@@ -6,5 +6,5 @@
         <item name="android:statusBarColor">@color/baseColor</item>
     </style>
 
-    <style name="Theme.MoveDB" parent="Base.Theme.MoveDB" />
+    <style name="Theme.MovieDB" parent="Base.Theme.MoveDB" />
 </resources>
